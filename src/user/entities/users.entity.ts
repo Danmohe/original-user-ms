@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
-enum userRole {
+export enum userRole {
   DEVELOPER = 'desarrollador',
   ADMIN = 'administrador',
 }

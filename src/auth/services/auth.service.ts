@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UsersService } from 'src/user/services/users.service';
+import { UsersService } from '../../user/services/users.service'; // Adjust the path as necessary
 import * as bcrypt from 'bcrypt';
 
 @Injectable()

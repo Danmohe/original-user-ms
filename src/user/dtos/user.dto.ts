@@ -29,26 +29,26 @@ export class updateUserDto {
   @IsOptional()
   @IsNotEmpty()
   @IsString()
-  readonly name: string;
+  readonly name?: string;
   @ApiProperty()
   @IsOptional()
   @IsNotEmpty()
   @IsString()
-  readonly lastName: string;
+  readonly lastName?: string;
   @ApiProperty()
   @IsOptional()
   @IsNotEmpty()
   @IsString()
-  readonly userName: string;
+  readonly userName?: string;
   @ApiProperty()
   @IsOptional()
   @IsNotEmpty()
   @IsEmail()
-  readonly email: string;
+  readonly email?: string;
   @ApiProperty()
   @IsString()
   @IsOptional()
-  readonly role: userRole;
+  readonly role?: userRole;
 }
 
 enum userRole {
