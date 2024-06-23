@@ -22,9 +22,14 @@
     "migration:generate": "npm run typeorm migration:generate src/database/migrations/migration",
     "migration:run": "npm run typeorm -- migration:run",
     "migration:show": "npm run typeorm -- migration:show",
-    "migration:drop": "npm run typeorm -- schema:drop"
+    "migration:drop": "npm run typeorm -- schema:drop",
+    "proto:install": "npm i git+https://github.com/FranMeneses/archi_protos.git",
+    "proto:auth": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/archi/proto --ts_proto_out=src/ node_modules/archi/proto/auth.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
+    "proto:all": "npm run proto:install && npm run proto:auth"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.10.9",
+    "@grpc/proto-loader": "^0.7.13",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.0.0",
@@ -35,6 +40,7 @@
     "@nestjs/typeorm": "^10.0.0",
     "amqp-connection-manager": "^4.1.14",
     "amqplib": "^0.10.3",
+    "archi": "github:FranMeneses/archi_protos",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
@@ -68,6 +74,7 @@
     "ts-jest": "^29.1.0",
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
+    "ts-proto": "^1.180.0",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3"
   },
