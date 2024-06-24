@@ -24,7 +24,7 @@
     "migration:show": "npm run typeorm -- migration:show",
     "migration:drop": "npm run typeorm -- schema:drop",
     "proto:install": "npm i git+https://github.com/FranMeneses/archi_protos.git",
-    "proto:auth": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/archi/proto --ts_proto_out=src/ node_modules/archi/proto/auth.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
+    "proto:auth": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto.cmd -I=./node_modules/archi/proto --ts_proto_out=src/ node_modules/archi/proto/auth.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
     "proto:all": "npm run proto:install && npm run proto:auth"
   },
   "dependencies": {
