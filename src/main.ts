@@ -1,30 +1,17 @@
 import { NestFactory, Reflector } from '@nestjs/core';
 import { ValidationPipe, ClassSerializerInterceptor } from '@nestjs/common';
 import { AppModule } from './app.module';
-import { Transport } from '@nestjs/microservices';
-
-import { RabbitMQ } from './common/constants';
+import { Transport, MicroserviceOptions } from '@nestjs/microservices';
+import { join } from 'path';
+import { protobufPackage } from './auth.pb';
 
 async function bootstrap() {
-  /*const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transformOptions: {
-        enableImplicitConversion: true,
-      },
-    }),
-  );
-  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
-  app.enableCors();
-  await app.listen(3000);*/
-
-  const app = await NestFactory.createMicroservice(AppModule, {
-    transport: Transport.RMQ,
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+    transport: Transport.GRPC,
     options: {
-      urls: 'amqp://localhost:5672',
-      queue: RabbitMQ.AuthorizationQueue,
+        url: '0.0.0.0:50051',
+        package: protobufPackage,
+        protoPath: join('node_modules/archi/proto/auth.proto'),
     },
   });
 
