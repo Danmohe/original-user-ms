@@ -11,11 +11,7 @@ import { Observable } from "rxjs";
 export const protobufPackage = "auth";
 
 export interface CreateUserRequest {
-  name: string;
-  lastName: string;
-  userName: string;
-  email: string;
-  password: string;
+  user: UserDto | undefined;
 }
 
 export interface UserRequest {
@@ -67,6 +63,14 @@ export interface RecoverPasswordResponse {
   success: boolean;
   message: string;
   error: string;
+}
+
+export interface UserDto {
+  name: string;
+  lastName: string;
+  userName: string;
+  email: string;
+  password: string;
 }
 
 export const AUTH_PACKAGE_NAME = "auth";

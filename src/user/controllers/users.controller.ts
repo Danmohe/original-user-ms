@@ -1,10 +1,13 @@
 import { Body, Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { MessagePattern, Payload } from '@nestjs/microservices/decorators';
+import { MessagePattern, Payload, GrpcMethod } from '@nestjs/microservices/decorators';
 
 import { UsersService } from '../services/users.service';
 import { userDto, updateUserDto } from '../dtos/user.dto';
 import { UserMSG } from 'src/common/constants';
+import { AUTH_SERVICE_NAME, CreateUserRequest, UserResponse } from 'src/auth.pb';
+import * as grpc from '@grpc/grpc-js';
+import { RpcException } from '@nestjs/microservices';
 
 @ApiTags('Users')
 @Controller('api/v1/users')
@@ -65,6 +68,26 @@ export class UsersController {
       };
     }
   }
+
+  /*
+  @GrpcMethod(AUTH_SERVICE_NAME, UserMSG.CREATE)
+  async createUser(payload: userDto): Promise<UserResponse> {
+    try {
+      const createdUser = await this.usersService.create(payload);
+      console.log('user created');
+      return {
+        user: createdUser,
+      };
+    } catch (error) {
+      console.error('Failed to create user', error);
+      throw new RpcException({
+        code: grpc.status.INTERNAL,
+        message: 'Failed to create user',
+      })
+
+    }
+  }
+    */
 
   @MessagePattern(UserMSG.UPDATE)
   async update(
